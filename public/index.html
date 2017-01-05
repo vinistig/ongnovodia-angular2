@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
-    <title>NodeJS Starter Application</title>
+<html lang="en">
+<head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ONG Novo Dia</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheets/style.css">
-  </head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/main.css?1483643803332">
+    <!-- endinject -->
+</head>
+<body>
 
-  <body>
-    <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-          <h1 id="message">Hello World!</h1>
-          <p class='description'></p> Thanks for creating a <span class = "blue">NodeJS Starter Application</span>.
-        </td>
-      </tr>
-    </table>
-  </body>
+    <sd-app>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </sd-app>
 
+    <script>
+    // Fixes undefined module function in SystemJS bundle
+    function module() {}
+    </script>
+
+    <!-- shims:js -->
+    <!-- endinject -->
+
+    
+
+    <!-- libs:js -->
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="/js/shims.js?1483643803330"></script>
+    <script src="/js/app.js?1483643803330"></script>
+    <!-- endinject -->
+
+    
+
+</body>
 </html>
