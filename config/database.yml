@@ -9,7 +9,7 @@ deafault: &default
 production:
   <<: *default
   uri: {{ process.env.MONGODB_URI }}
-  name: share2win?ssl=true
+  
 
 development:
   <<: *default
