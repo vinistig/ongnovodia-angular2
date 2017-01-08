@@ -1,16 +1,52 @@
 {
-	"name": "NodejsStarterApp",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"express": "4.13.x",
-		"cfenv": "1.0.x"
-	},
-	"repository": {},
-	"engines": {
-		"node": "4.x"
-	} 
+  "name": "share2win",
+  "version": "1.0.0",
+  "description": "An ike project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/_mocha",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec"
+  },
+  "engines": {
+    "node": "6.6.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/go-ike/ike-base.git"
+  },
+  "author": "Mateus Pinheiro <mateus.pinheiro@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "ibm-bluemix-faces": "^1.0.0",
+    "ibm-ldap": "^1.0.0",
+    "ike-router": "^1.2.0",
+    "mongoose": "^4.6.5",
+    "multer": "^1.2.1",
+    "nunjucks": "^2.5.2",
+    "promise-serial": "^0.1.1",
+    "turbolinks": "^5.0.0",
+    "uuid": "^3.0.1",
+    "yamler": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-watch": "^4.3.10",
+    "intern": "^3.3.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "morph-css": "^1.0.1",
+    "nodemon": "^1.11.0",
+    "postcss-cssnext": "^2.8.0",
+    "postcss-import": "^8.1.2",
+    "require-dir": "^0.3.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
 }

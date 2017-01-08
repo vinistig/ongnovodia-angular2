@@ -1,0 +1,11 @@
+production:
+  port: {{ process.env.PORT }}
+  kalturaCategoryId: 62297741
+
+development:
+  port: 3000
+  kalturaCategoryId: 62297851
+
+test:
+  port: 3000
+  kalturaCategoryId: 62297851

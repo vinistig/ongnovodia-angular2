@@ -1,2 +1,7 @@
-node_modules
-client/node_modules
+**/node_modules/
+**/jsdoc/
+**/build/
+**/dist/
+**/typings/
+**/.DS_Store
+npm-debug.log

@@ -1,28 +1,32 @@
-/*eslint-env node*/
+/**
+ * APP.JS - Main entry file
+ * The app starts here. The current NODE_ENV will be booted.
+ */
 
-//------------------------------------------------------------------------------
-// node.js starter application for Bluemix
-//------------------------------------------------------------------------------
+/**
+ * Improve the require path. Controllers, models and helpers can
+ * be required direclty, without the need of traversing the
+ * relative path.
+ *
+ * This will work, anywhere on the app.
+ * const controller = apprequire('controller/samples');
+ *
+ * To return a new instance without params, you can
+ * const controller = newApprequire('controller/samples');
+ */
+global.apprequire = function(fileName) { return require(__dirname + '/app/' + fileName)};
+global.newApprequire = function(fileName) { return new (require(__dirname + '/app/' + fileName))() };
 
-// This application uses express as its web server
-// for more info, see: http://expressjs.com
-var express = require('express');
+/**
+ * Boot the right environment based on NODE_ENV.
+ */
+const environment = process.env.NODE_ENV;
 
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
-var cfenv = require('cfenv');
+if (environment === 'production')
+	require('./config/environments/production.js');
 
-// create a new express server
-var app = express();
+else if (environment === 'test')
+	require('./config/environments/test.js');
 
-// serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
-
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
-
-// start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
-});
+else
+	require('./config/environments/development.js');

@@ -1,0 +1,22 @@
+deafault: &default
+  adapter: mongoose
+  options:
+    db:
+      native_parser: true
+    server:
+      poolSize: 5
+
+production:
+  <<: *default
+  uri: {{ process.env.MONGODB_URI }}
+  name: share2win?ssl=true
+
+development:
+  <<: *default
+  uri: mongodb://localhost/
+  name: share2win_dev
+
+test:
+  <<: *default
+  uri: mongodb://localhost/
+  name: share2win_test
