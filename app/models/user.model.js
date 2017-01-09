@@ -15,35 +15,45 @@ const Errors      = apprequire('helpers/errors.helper')
 const hasObjectId = apprequire('helpers/has-object-id.helper')
 const Kaltura     = apprequire('models/kaltura.model')
 
-
-/* private */
-
-let isRequired = function(){
-	if (this.email!= undefined && this.email!='') {
-		return false
-	} else {
-		return true
-	}
-}
-
 /* model schema */
 
 const schema = new Schema({
-	email:   { type: String, require: true, unique: true },
-	uid:     { type: String, required: isRequired, unique: false },
-	name:    { type: String ,required: false },
-	isAdmin: { type: Boolean, required: true, default: false },
-	hasKalturaSession: { type: Boolean, required: true, default: false}
+	name:   { type: String, require: true, unique: true },
+	username:     { type: String, required: true, unique: false },
+	password:    { type: String ,required: true },
+	isAdmin: { type: Boolean, required: true, default: false }
 })
 
-schema.index({ name: 'text', uid: 'text', email: 'text' })
+schema.index({ name: 'text', username: 'text', password: 'text' })
 
 /* statics */
 
+schema.statics.verifyUserAndPassword = function(user) {
+console.log(user)
+return new Promise((resolve, reject) => {
+	this.findOne({'username': user.username}).then(result =>{
+		console.log(result)
+		if(result != null){
+			let realPassword = result.password
+			let userPassword = user.password
+			if(realPassword === userPassword ){
+				var res = {};
+				res.name = result.name
+				res.username = result.username
+				resolve(res)
+			} else{
+				reject({"erro":401,"message":"INVALID_PASSWORD"})
+			}
+		} else {
+			reject({"erro":401,"message":"INVALID_USERNAME"})
+		}
+	}).catch(err => reject(err))
+})
 
+}
 /**
  * Gets a user from uid. If found, will update its
- * infod with the lates from Faces. If not, will 
+ * infod with the lates from Faces. If not, will
  * create it.
  * @param  {String} uid Uid to look for
  * @return {Promise, User}
@@ -51,8 +61,8 @@ schema.index({ name: 'text', uid: 'text', email: 'text' })
 schema.statics.getOrUpdateFromUid = function(uid) {
 return new Promise((resolve, reject) => {
 	Promise.all([
-		this.findOne({'uid': uid}),
-		Faces.query(uid)
+		this.findOne({'username': uid}),
+		//Faces.query(uid)
 	])
 	.then(query => {
 		let user    = query[0]
@@ -63,7 +73,7 @@ return new Promise((resolve, reject) => {
 
 		if (!user) {
 			user = this.findOne({'email': userObj.email})
-		} 
+		}
 
 		return Promise.all([
 			user,
@@ -74,7 +84,7 @@ return new Promise((resolve, reject) => {
 		let user    = query[0]
 		let userObj = query[1]
 		let kaltura = new Kaltura()
-		
+
 		if(!user) {
 			user = new this(userObj)
 		} else {
@@ -131,7 +141,7 @@ return new Promise((resolve, reject) => {
 }
 
 /**
- * Maps an user from IBM LDAP server into a User model 
+ * Maps an user from IBM LDAP server into a User model
  * compliant one
  * @param  {Object} user The user returned by LDAP
  * @return {Object}
@@ -141,7 +151,7 @@ schema.statics.mapLdapUser = function(user) {
 }
 
 /**
- * Maps an user from a Faces search into a User model 
+ * Maps an user from a Faces search into a User model
  * compliant one
  * @param  {Object} user The user returned by Faces
  * @return {Object}
@@ -156,7 +166,7 @@ schema.statics.mapFacesUser = function(user) {
  * @return {Promise, Object}
  */
 schema.statics.getPermissionsFor = function(user) {
-return new Promise((resolve, reject) => {	
+return new Promise((resolve, reject) => {
 	let tree = {
 		isAdmin: user.isAdmin,
 		groups: []
@@ -204,7 +214,7 @@ schema.statics.getOrCreateFromEmail = function(email){
 return new Promise((resolve, reject) => {
 	this.findOne({'email': email})
 	.then(user => {
-		if(!user) { 
+		if(!user) {
 			user = new this({ email: email, isAdmin: false, hasKalturaSession: false }) }
 
 		return user.save()

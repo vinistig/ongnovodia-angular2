@@ -27,7 +27,7 @@ routes.get('/api/status', 'status#index')
 /* ####################
    ###### mobile ######
    #################### */
-routes.post('/api/login', 'login#mobile', { middleware: loginMiddleware })
+routes.post('/api/login', 'login#login')
 routes.post('/api/login-admin', 'login#admin', { middleware: loginMiddleware })
 
 routes.get('/api/feed/subscribed', 'feed#index')
