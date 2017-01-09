@@ -13,19 +13,19 @@ const multer = require('multer')()
 
 
 /* ####################
-   #### middlware ##### 
+   #### middlware #####
    #################### */
-routes.mountMiddleware(sessionMiddleware)
+//routes.mountMiddleware(sessionMiddleware)
 
 
 /* ####################
-   ###### generic ##### 
+   ###### generic #####
    #################### */
 routes.get('/api/status', 'status#index')
 
 
 /* ####################
-   ###### mobile ###### 
+   ###### mobile ######
    #################### */
 routes.post('/api/login', 'login#mobile', { middleware: loginMiddleware })
 routes.post('/api/login-admin', 'login#admin', { middleware: loginMiddleware })
@@ -63,7 +63,7 @@ routes.get   ('/api/search/author', 'search#getVideosByAuthor')
 
 
 /* ####################
-   ###### admin ####### 
+   ###### admin #######
    #################### */
 routes.get   ('/api/admin',      'admin#index')
 routes.post  ('/api/admin/:uid', 'admin#add')

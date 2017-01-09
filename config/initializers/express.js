@@ -16,8 +16,8 @@ function bootExpress(config) {
 	app.use(optionMiddleware)
 
 	// Frontend
-	app.use(express.static('client/dist/'));
-	
+	app.use(express.static('client/src'));
+
 	// Routes
 	const routes = require('../routes.js');
 	app.use('/', routes);

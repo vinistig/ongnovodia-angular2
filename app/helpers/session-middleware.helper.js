@@ -1,5 +1,6 @@
 const Session = apprequire('models/session.model')
 const ignoredRoutes = [
+	'/',
 	'/api/login',
 	'/api/login-admin',
 	'/api/status'
