@@ -25,7 +25,7 @@ class GroupController {
 		let id = req.params.groupId
 		let user = req.user
 
-		Group.findById(id).populate('owners members').exec()
+		Group.find({cpf: id}).populate('owners members').exec()
 			.then(group => {
 				if (!group) throw new Error.NotFound()
 				return Abilities.can(user, 'view', group)
@@ -115,8 +115,8 @@ class GroupController {
 				object.rows = group.members.length + group.tempUsers.length
 
 				let query = {
-					$or: [ 
-						{ _id: { $in: group.members } }, 
+					$or: [
+						{ _id: { $in: group.members } },
 						{ _id: { $in: group.tempUsers } }
 					]
 				}
@@ -188,7 +188,7 @@ class GroupController {
 								email: user.email
 							})
 						}
-						
+
 					}
 				}
 
@@ -267,10 +267,10 @@ class GroupController {
 
 				if (!group)
 					throw new Error.NotFound('Group not found')
-				
+
 				if (!hasObjectId(group[property], userToRemove._id))
 					throw new Error.NotFound('User not found')
-				
+
 				let toRemove = { $pull: { subscribers: userToRemove._id } }
 
 				return Promise.all([
@@ -305,14 +305,14 @@ class GroupController {
 				let promises = []
 				thisGroup = group._doc
 
-				if (type !== 'text/csv') { 
+				if (type !== 'text/csv') {
 					throw new Error.BadRequest('INVALID_FILE_TYPE') }
 
 				let tempUsersEmails = thisGroup.tempUsers.map(tempUser => tempUser.email)
 
 				let emails = csvHandler.toArray(tempUsersEmails)
 
-				if (!emails) { 
+				if (!emails) {
 					throw new Errors.BadRequest('EMPTY_FILE') }
 
 				if (!Array.isArray(emails) || emails.length > 0) {

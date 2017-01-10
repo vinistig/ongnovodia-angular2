@@ -28,7 +28,11 @@ routes.get('/api/status', 'status#index')
    ###### mobile ######
    #################### */
 routes.post('/api/login', 'login#login')
-routes.post('/api/login-admin', 'login#admin', { middleware: loginMiddleware })
+routes.post('/api/inscricao', 'inscricao#new')
+routes.get   ('/api/inscricao/:documento', 'inscricao#get')
+routes.put   ('/api/inscricao/:documento', 'inscricao#edit')
+routes.delete('/api/inscricao/:documento', 'inscricao#delete')
+//routes.post('/api/login-admin', 'login#admin', { middleware: loginMiddleware })
 
 routes.get('/api/feed/subscribed', 'feed#index')
 routes.get('/api/feed', 'feed#allForGroup')

@@ -31,8 +31,8 @@ schema.index({ name: 'text', username: 'text', password: 'text' })
 schema.statics.verifyUserAndPassword = function(user) {
 console.log(user)
 return new Promise((resolve, reject) => {
-	this.findOne({'username': user.username}).then(result =>{
-		console.log(result)
+	this.findOne({'username': user.username})
+	.then(result =>{
 		if(result != null){
 			let realPassword = result.password
 			let userPassword = user.password

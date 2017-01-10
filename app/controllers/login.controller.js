@@ -9,7 +9,6 @@ class LoginController {
 	constructor() {}
 
 	login(req, res) {
-		console.log(req.body)
 		User.verifyUserAndPassword(req.body)
 		.then(user => res.status(200).json(user))
 		.catch(err => ErrorHandler.toRequest(err, res))
