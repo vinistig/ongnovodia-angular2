@@ -23,9 +23,9 @@ export class LoginComponent {
 
 	login() {
 
-		console.log(username.value)
-		console.log(password.value)
-		this.loginService.login(username.value, password.value)
+		console.log(this.username)
+		console.log(this.password)
+		this.loginService.login(this.username, this.password)
 			.then(res => {
 				console.log(res)
 				if(res.erro){
