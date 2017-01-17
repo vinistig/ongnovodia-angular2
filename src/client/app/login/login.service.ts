@@ -10,8 +10,8 @@ export class LoginService{
 	login(username: string, password: string): Promise<any> {
 		console.log("service")
 		var body = {username: username, password: password}
-		return this.http.post('http://localhost:3000/api/login', body)
-		// return this.http.post('/api/login', body)
+		//return this.http.post('http://localhost:3000/api/login', body)
+		return this.http.post('/api/login', body)
 		.toPromise()
 		.then(response => response.json())
 		.catch(error => error.json())
