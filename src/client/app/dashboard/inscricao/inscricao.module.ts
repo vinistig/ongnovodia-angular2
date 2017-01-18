@@ -6,8 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { InscricaoComponent } from './inscricao.component';
 import { InscricaoService } from './inscricao.service';
 
+import { TextMaskModule } from 'angular2-text-mask';
+
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule],
+    imports: [CommonModule,
+              RouterModule,
+              FormsModule,
+              TextMaskModule],
     declarations: [InscricaoComponent],
     exports: [InscricaoComponent],
     providers:[{provide: InscricaoService, useClass: InscricaoService}]
