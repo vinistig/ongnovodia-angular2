@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { InscricaoService } from './inscricao.service'
 
 @Component({
 	moduleId: module.id,
@@ -6,4 +8,11 @@ import { Component } from '@angular/core';
     templateUrl: './inscricao.component.html'
 })
 
-export class InscricaoComponent {}
+export class InscricaoComponent {
+	constructor(private loginService: InscricaoService, private router: Router) {}
+	colours = Array<Colour>();
+
+	inscricao() {
+
+	}
+}

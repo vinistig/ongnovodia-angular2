@@ -2,11 +2,14 @@
 	<div class="row">
 		<div class="col-md-12 col-lg-6 ">
 			<div class="card">
+
 				<div class="card-header card-primary card-inverse">
-					<span class="card-title">Default Form</span>
+					<span class="card-title">Formulário de Inscrição</span>
 				</div>
+
 				<div class="card-block">
-					<form>
+
+					<!-- <form>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Email address</label>
 							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
@@ -21,84 +24,307 @@
 							</label>
 						</div>
 						<button type="submit" class="btn btn-secondary">Submit</button>
+					</form> -->
+
+					<form #form="ngForm">
+						<div class="form-content">
+
+							<div class="form-group">
+								<span style="font-weight: bold">Nome:
+								<input
+								[(ngModel)]="inscricao.nome"
+								#nome="ngModel"
+								name="nome"
+								type="text"
+								id="nome"
+							   class="form-control"
+							   placeholder="Nome"
+							   required></span>
+							<div id="errorMessage" *ngIf="!nome.valid && !nome.untouched" style="color:red">
+				   				<div *ngIf="nome.errors && nome.errors.required">
+				   					Nome is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Nome da Mãe:
+								<input
+								[(ngModel)]="inscricao.nomemae"
+								#nomemae="ngModel"
+								name="nomemae"
+								type="text"
+								id="nomemae"
+							   class="form-control"
+							   placeholder="Nome da Mãe"
+							   required></span>
+							<div id="errorMessage" *ngIf="!nomemae.valid && !nomemae.untouched" style="color:red">
+				   				<div *ngIf="nomemae.errors && nomemae.errors.required">
+				   					Nome da Mãe is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Nome do Pai:
+								<input
+								[(ngModel)]="inscricao.nomepai"
+								#nomepai="ngModel"
+								name="nomepai"
+								type="text"
+								id="nomepai"
+							   class="form-control"
+							   placeholder="Nome do Pai"
+							   required></span>
+							<div id="errorMessage" *ngIf="!nomepai.valid && !nomepai.untouched" style="color:red">
+				   				<div *ngIf="nomepai.errors && nomepai.errors.required">
+				   					Nome da Mãe is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Sexo:&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.sexo"  name="sexo" value="MASCULINO">&nbsp;Masculino
+									&nbsp;
+        							<input type="radio" [(ngModel)]="inscricao.sexo"  name="sexo" value="FEMININO">&nbsp;Feminino
+								</span>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Estado Civil:
+									&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.estadocivil"  name="estadocivil" value="SOLTEIRO">&nbsp;Solteiro
+									&nbsp;
+        							<input type="radio" [(ngModel)]="inscricao.estadocivil"  name="estadocivil" value="CASADO">&nbsp;Casado
+									&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.estadocivil"  name="estadocivil" value="VIUVO">&nbsp;Víuvo
+									&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.estadocivil"  name="estadocivil" value="DIVORCIADO">&nbsp;Divorciado
+									&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.estadocivil"  name="estadocivil" value="SEPARADO">&nbsp;Separado
+								</span>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Data de Nascimento:
+								<input
+								[(ngModel)]="inscricao.datanasc"
+								#datanasc="ngModel"
+								name="datanasc"
+								type="date"
+								id="datanasc"
+							   class="form-control"
+							   placeholder="Data de Nascimento"
+							   required></span>
+							<div id="errorMessage" *ngIf="!datanasc.valid && !datanasc.untouched" style="color:red">
+				   				<div *ngIf="datanasc.errors && datanasc.errors.required">
+				   					Data de Nascimento is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Naturalidade (Município de Nascimento):
+								<input
+								[(ngModel)]="inscricao.naturalidade"
+								#naturalidade="ngModel"
+								name="naturalidade"
+								type="text"
+								id="naturalidade"
+							   class="form-control"
+							   placeholder="Naturalidade (Município de Nascimento)"
+							   required></span>
+							<div id="errorMessage" *ngIf="!naturalidade.valid && !naturalidade.untouched" style="color:red">
+				   				<div *ngIf="naturalidade.errors && naturalidade.errors.required">
+				   					Naturalidade is Required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Etnia:
+								<select
+								[(ngModel)]="inscricao.etnia"
+							   	#etnia="ngModel"
+							   	name="etnia"
+							   	id="etnia"
+							  	class="form-control"
+							  	placeholder="Etnia"
+							  	required>
+									<option [ngValue]="" selected></option>
+									<option [ngValue]="BRANCO" value="BRANCO">Branco</option>
+									<option [ngValue]="NEGRO" value="NEGRO">Negro</option>
+									<option [ngValue]="PARDO" value="PARDO">Pardo</option>
+									<option [ngValue]="AMARELO" value="AMARELO">Amarelo</option>
+									<option [ngValue]="INDIGENA" value="INDIGENA">Indígena</option>
+									<option [ngValue]="MULATO" value="MULATO">Mulato</option>
+								</select></span>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Religião:
+								<select
+								[(ngModel)]="inscricao.religiao"
+							   	#religiao="ngModel"
+							   	name="religiao"
+							   	id="religiao"
+							  	class="form-control"
+							  	placeholder="Religião"
+							  	required>
+									<option [ngValue]="" selected></option>
+									<option [ngValue]="CATOLICA_APOSTOLICA" value="CATOLICA_APOSTOLICA">Católica Apostólica</option>
+									<option [ngValue]="CATOLICA_ORTODOXA" value="CATOLICA_ORTODOXA">Católica Ortodoxa</option>
+									<option [ngValue]="BATISTA" value="BATISTA">Batista</option>
+									<option [ngValue]="LUTERANA" value="LUTERANA">Luterana</option>
+									<option [ngValue]="PRESBITERIANA" value="PRESBITERIANA">Presbiteriana</option>
+									<option [ngValue]="METODISTA" value="METODISTA">Metodista</option>
+									<option [ngValue]="EVANGELICO" value="EVANGELICO">Evangélico</option>
+									<option [ngValue]="ADVENTISTA" value="ADVENTISTA">Adventista</option>
+									<option [ngValue]="TESTEMUNHA_DE_JEOVA" value="TESTEMUNHA_DE_JEOVA">Testemunha de Jeová</option>
+									<option [ngValue]="MORMONS" value="MORMONS">Mórmons</option>
+									<option [ngValue]="ESPIRITISMO" value="ESPIRITISMO">Espiritismo</option>
+									<option [ngValue]="UMBANDA" value="UMBANDA">Umbanda</option>
+									<option [ngValue]="BUDISMO" value="BUDISMO">Budismo</option>
+									<option [ngValue]="CANDOMBLE" value="CANDOMBLE">Candomblé</option>
+									<option [ngValue]="MESSIANICA" value="MESSIANICA">Messiânica</option>
+									<option [ngValue]="JUDAISMO" value="JUDAISMO">Judaismo</option>
+									<option [ngValue]="ISLAMISMO" value="ISLAMISMO">Islamismo</option>
+									<option [ngValue]="PAGA" value="PAGA">Pagã</option>
+									<option [ngValue]="HARE_KRISHNA" value="HARE_KRISHNA">Hare Krishna</option>
+									<option [ngValue]="TAOISMO" value="TAOISMO">Taoísmo</option>
+									<option [ngValue]="HINDUISMO" value="HINDUISMO">Hinduísmo</option>
+									<option [ngValue]="SEICHO_NO_IE" value="SEICHO_NO_IE">Seicho-no-ie</option>
+									<option [ngValue]="SEM_RELIGIAO" value="SEM_RELIGIAO">Sem Religião</option>
+									<option [ngValue]="OUTRA" value="OUTRA">Outra</option>
+								</select></span>
+							</div>
+							<br>
+							<div class="card-header card-primary card-inverse">
+								<span class="card-title">Dados Residenciais</span>
+							</div>
+							<br>
+							<div class="form-group">
+								<span style="font-weight: bold">Endereço:
+								<input
+								[(ngModel)]="inscricao.rua"
+								#rua="ngModel"
+								name="rua"
+								type="text"
+								id="rua"
+							   class="form-control"
+							   placeholder="Endereço"
+							   required></span>
+							<div id="errorMessage" *ngIf="!rua.valid && !rua.untouched" style="color:red">
+				   				<div *ngIf="rua.errors && rua.errors.required">
+				   					Endereço is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Número:
+								<input
+								[(ngModel)]="inscricao.numero"
+								#numero="ngModel"
+								name="numero"
+								type="text"
+								id="numero"
+							   class="form-control"
+							   placeholder="Número"
+							   required></span>
+							<div id="errorMessage" *ngIf="!numero.valid && !numero.untouched" style="color:red">
+				   				<div *ngIf="numero.errors && numero.errors.required">
+				   					Numero is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Bairro:
+								<input
+								[(ngModel)]="inscricao.bairro"
+								#bairro="ngModel"
+								name="bairro"
+								type="text"
+								id="bairro"
+							   class="form-control"
+							   placeholder="Bairro"
+							   required></span>
+							<div id="errorMessage" *ngIf="!bairro.valid && !bairro.untouched" style="color:red">
+				   				<div *ngIf="bairro.errors && bairro.errors.required">
+				   					Numero is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">CEP:
+								<input
+								[(ngModel)]="inscricao.cep"
+								#cep="ngModel"
+								name="cep"
+								type="text"
+								id="cep"
+							   class="form-control"
+							   placeholder="CEP"
+							   required></span>
+							<div id="errorMessage" *ngIf="!cep.valid && !cep.untouched" style="color:red">
+				   				<div *ngIf="cep.errors && cep.errors.required">
+				   					CEP is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Cidade:
+								<input
+								[(ngModel)]="inscricao.cidade"
+								#cidade="ngModel"
+								name="cidade"
+								type="text"
+								id="cidade"
+							   class="form-control"
+							   placeholder="Cidade"
+							   required></span>
+							<div id="errorMessage" *ngIf="!cidade.valid && !cidade.untouched" style="color:red">
+				   				<div *ngIf="cidade.errors && cidade.errors.required">
+				   					Cidade is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Estado:
+								<select
+								[(ngModel)]="inscricao.estado"
+							   	#estado="ngModel"
+							   	name="estado"
+							   	id="estado"
+							  	class="form-control"
+							  	placeholder="Estado"
+							  	required>
+									<option [ngValue]="" selected></option>
+									<option [ngValue]="BRANCO" value="BRANCO">Branco</option>
+									<option [ngValue]="NEGRO" value="NEGRO">Negro</option>
+									<option [ngValue]="PARDO" value="PARDO">Pardo</option>
+									<option [ngValue]="AMARELO" value="AMARELO">Amarelo</option>
+									<option [ngValue]="INDIGENA" value="INDIGENA">Indígena</option>
+									<option [ngValue]="MULATO" value="MULATO">Mulato</option>
+								</select></span>
+							</div>
+
+
+
+						</div>
+						<a class="btn rounded-btn" (click)="login()"> Log in </a>
+						<!-- <a type="submit" id="loginButton" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid" *ngIf="!spinner">Log in</button> -->
 					</form>
+
+
 				</div>
+
 			</div>
 		</div>
-		<!-- <div class="col-md-12 col-lg-6 ">
-			<div class="card">
-				<div class="card-header card-primary card-inverse">
-					<span class="card-title">Buttons</span>
-				</div>
-				<div class="card-block">
-					<p>
-					    <button type="button" class="btn btn-lg btn-secondary">Default</button>
-					    <button type="button" class="btn btn-lg btn-primary">Primary</button>
-					    <button type="button" class="btn btn-lg btn-success">Success</button>
-					    <button type="button" class="btn btn-lg btn-info">Info</button>
-					    <button type="button" class="btn btn-lg btn-warning">Warning</button>
-					    <button type="button" class="btn btn-lg btn-danger">Danger</button>
-					    <button type="button" class="btn btn-lg btn-link">Link</button>
-					</p>
-					<p>
-					    <button type="button" class="btn btn-secondary">Default</button>
-					    <button type="button" class="btn btn-primary">Primary</button>
-					    <button type="button" class="btn btn-success">Success</button>
-					    <button type="button" class="btn btn-info">Info</button>
-					    <button type="button" class="btn btn-warning">Warning</button>
-					    <button type="button" class="btn btn-danger">Danger</button>
-					    <button type="button" class="btn btn-link">Link</button>
-					</p>
-					<p class="m-b-0">
-					    <button type="button" class="btn btn-sm btn-secondary">Default</button>
-					    <button type="button" class="btn btn-sm btn-primary">Primary</button>
-					    <button type="button" class="btn btn-sm btn-success">Success</button>
-					    <button type="button" class="btn btn-sm btn-info">Info</button>
-					    <button type="button" class="btn btn-sm btn-warning">Warning</button>
-					    <button type="button" class="btn btn-sm btn-danger">Danger</button>
-					    <button type="button" class="btn btn-sm btn-link">Link</button>
-					</p>
-				</div>
-			</div>
-		</div> -->
 	</div>
-	<!-- <div class="row">
-		<div class="col-md-12 col-lg-6 ">
-			<div class="card">
-				<div class="card-header card-primary card-inverse">
-					<span class="card-title">Jumbotron</span>
-				</div>
-				<div class="card-block"> -->
-					<!-- Main jumbotron for a primary marketing message or call to action -->
-					    <!-- <div class="jumbotron m-b-0">
-					        <h1>Hello, world!</h1>
-					        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-					        <p><a href="javascript:;" class="btn btn-primary btn-lg" role="button">Learn more »</a>
-					        </p>
-					    </div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-12 col-lg-6 ">
-			<div class="card">
-				<div class="card-header card-primary card-inverse">
-					<span class="card-title">Typography
-					</span>
-				</div>
-				<div class="card-block">
-					<h1>Heading 1 <small>Sub-heading</small> </h1>
-					<h2>Heading 2 <small>Sub-heading</small> </h2>
-					<h3>Heading 3 <small>Sub-heading</small> </h3>
-					<h4>Heading 4 <small>Sub-heading</small> </h4>
-					<h5>Heading 5 <small>Sub-heading</small> </h5>
-					<h6>Heading 6 <small>Sub-heading</small> </h6>
-					<p class="lead">This is an example of lead body copy.</p>
-					<p>This is an example of standard paragraph text. This is an example of <a href="#">link anchor text</a> within body copy.</p>
-					<p> <small>This is an example of small, fine print text.</small> </p>
-					<p> <strong>This is an example of strong, bold text.</strong> </p>
-					<p class="m-b-0"> <em>This is an example of emphasized, italic text.</em> </p> <br>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </div>
