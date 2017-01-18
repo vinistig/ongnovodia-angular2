@@ -10,8 +10,6 @@ import { InscricaoService } from './inscricao.service'
 
 export class InscricaoComponent {
 	constructor(private loginService: InscricaoService, private router: Router) {}
-	colours = Array<Colour>();
-
 	inscricao() {
 
 	}
