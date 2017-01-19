@@ -43,7 +43,7 @@
 
 					</div>
 				</div>
-				<a class="btn rounded-btn" (click)="login()"> Log in </a>
+				<button type="submit" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid"> Log in </button>
 				<!-- <a type="submit" id="loginButton" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid" *ngIf="!spinner">Log in</button> -->
 			</form>
 		</div>

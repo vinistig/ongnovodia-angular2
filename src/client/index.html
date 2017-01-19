@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- inject:css -->
     <!-- endinject -->
+    <!-- <script src="app/shared/webcam.js"></script> -->
 </head>
 <body>
 
@@ -19,6 +20,7 @@
             <div class="bounce3"></div>
         </div>
     </sd-app>
+
 
     <script>
     // Fixes undefined module function in SystemJS bundle
@@ -48,5 +50,22 @@
     </script>
     <% } %>
 
+    <!-- <div id="my_camera" style="width:320px; height:240px;" ></div> -->
+
+    <!-- <script>
+    	window.onload = function (){
+            //alert('page is loaded');
+            setTimeout(function () {
+                // alert('page is loaded and 1 minute has passed');
+                Webcam.attach('my_camera');
+            }, 1000);
+    }
+    	function take_snapshot() {
+    		Webcam.snap( function(data_uri) {
+    			// document.getElementById('my_camera').innerHTML = '<img src="'+data_uri+'"/>';
+    			document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+    		} );
+    	}
+    </script> -->
 </body>
 </html>

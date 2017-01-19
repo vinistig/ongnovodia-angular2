@@ -9,8 +9,12 @@ import { InscricaoService } from './inscricao.service'
 })
 
 export class InscricaoComponent {
-	constructor(private loginService: InscricaoService, private router: Router) {}
-	inscricao = {rg:""};
+
+	constructor(private inscricaoService: InscricaoService, private router: Router) {}
+	inscricaoError: boolean = false
+	inscricaoErrorMsg: string = ""
+	inscricaoSuccess: boolean = false
+	inscricao = {deficiencia:"", observacoes:"", rg_responsavel:"", nome_pai:"", nome_mae:"", encaminhado_por:"", nome_responsavel:"", cpf:"", telefone:"", celular:"", image:""};
 
 	public cpfMask = [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 	public rgMask = [/\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /[0-9-X]/]
@@ -19,8 +23,45 @@ export class InscricaoComponent {
 	public telefoneMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
 	public celularMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
 
-
 	makeInscricao() {
 		this.inscricao.rg = this.inscricao.rg.replace(/\D+/g, '');
+		this.inscricao.cpf = this.inscricao.cpf.replace(/\D+/g, '');
+		this.inscricao.cep = this.inscricao.cep.replace(/\D+/g, '');
+		this.inscricao.image = document.getElementById('imgInscricao').src;
+		document.getElementById('btnCancel').disabled = true
+		document.getElementById('btnSuccess').disabled = true
+		this.inscricaoService.makeInscricao(this.inscricao)
+			.then(res => {
+				console.log(res.status)
+				console.log(res)
+				if(res.errors || res.mongoError){
+					this.inscricaoError = true;
+					this.inscricaoErrorMsg = ""
+					this.inscricaoErrorMsg = res.message
+					document.getElementById('btnCancel').disabled = false
+					document.getElementById('btnSuccess').disabled = false
+				} else{
+					console.log("aqui oi")
+					this.inscricaoError = false;
+					this.inscricaoSuccess = true;
+					//this.router.navigate(['dashboard', 'home']);
+					setTimeout(()=>{
+						document.getElementById('btnCancel').disabled = false
+						document.getElementById('btnSuccess').disabled = false
+						this.router.navigate(['dashboard', 'home']);
+					}, 5000);
+				}
+			}).catch(error => {
+				console.log("error")
+				document.getElementById('btnCancel').disabled = false;
+				document.getElementById('btnSuccess').disabled = false;
+				this.inscricaoError = true;
+				this.inscricaoErrorMsg = "SERVER ERROR, PLEASE TRY AGAIN"
+			});
 	}
+
+	cancel() {
+		this.router.navigate(['dashboard', 'home']);
+	}
+
 }

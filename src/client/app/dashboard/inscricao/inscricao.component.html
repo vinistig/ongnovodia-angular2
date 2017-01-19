@@ -7,24 +7,9 @@
 					<span class="card-title">Formulário de Inscrição</span>
 				</div>
 
-				<div class="card-block">
+				<webcam-component></webcam-component>
 
-					<!-- <form>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox"> Remember me
-							</label>
-						</div>
-						<button type="submit" class="btn btn-secondary">Submit</button>
-					</form> -->
+				<div class="card-block">
 
 					<form #form="ngForm">
 						<div class="form-content">
@@ -33,7 +18,7 @@
 							</div>
 							<br>
 							<div class="form-group">
-								<span style="font-weight: bold">Nome:
+								<span style="font-weight: bold">Nome:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.nome"
 								#nome="ngModel"
@@ -60,34 +45,29 @@
 								id="nomemae"
 							   class="form-control"
 							   placeholder="Nome da Mãe"
-							   required></span>
-							<div id="errorMessage" *ngIf="!nome_mae.valid && !nome_mae.untouched" style="color:red">
-				   				<div *ngIf="nome_mae.errors && nome_mae.errors.required">
-				   					Nome da Mãe is required
-				   				</div>
-				   			</div>
+							   ></span>
+							   <br>
+							   <span style="font-weight: bold">Nome do Pai:
+							   <input
+							   [(ngModel)]="inscricao.nome_pai"
+							   #nome_pai="ngModel"
+							   name="nomepai"
+							   type="text"
+							   id="nomepai"
+							  class="form-control"
+							  placeholder="Nome do Pai"
+							  ></span>
+							<div id="errorMessage" *ngIf="((!nome_pai.untouched) && (!nome_mae.untouched)) && ((!nome_mae.value)&&(!nome_pai.value))" style="color:red">
+  								  Nome da Mae ou do Pai is required
+  							</div>
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Nome do Pai:
-								<input
-								[(ngModel)]="inscricao.nome_pai"
-								#nome_pai="ngModel"
-								name="nomepai"
-								type="text"
-								id="nomepai"
-							   class="form-control"
-							   placeholder="Nome do Pai"
-							   required></span>
-							<div id="errorMessage" *ngIf="!nome_pai.valid && !nome_pai.untouched" style="color:red">
-				   				<div *ngIf="nome_pai.errors && nome_pai.errors.required">
-				   					Nome da Mãe is required
-				   				</div>
-				   			</div>
+
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Sexo:&nbsp;
+								<span style="font-weight: bold">Sexo:<span style="color:red">*</span>&nbsp;
 									<input type="radio" [(ngModel)]="inscricao.sexo"  name="sexo" value="MASCULINO">&nbsp;Masculino
 									&nbsp;
         							<input type="radio" [(ngModel)]="inscricao.sexo"  name="sexo" value="FEMININO">&nbsp;Feminino
@@ -95,7 +75,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Estado Civil:
+								<span style="font-weight: bold">Estado Civil:<span style="color:red">*</span>
 									&nbsp;
 									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="SOLTEIRO">&nbsp;Solteiro
 									&nbsp;
@@ -110,7 +90,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Data de Nascimento:
+								<span style="font-weight: bold">Data de Nascimento:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.datanasc"
 								#datanasc="ngModel"
@@ -128,7 +108,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Naturalidade (Município de Nascimento):
+								<span style="font-weight: bold">Naturalidade (Município de Nascimento):<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.naturalidade"
 								#naturalidade="ngModel"
@@ -146,7 +126,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Etnia:
+								<span style="font-weight: bold">Etnia:<span style="color:red">*</span>
 								<select
 								[(ngModel)]="inscricao.etnia"
 							   	#etnia="ngModel"
@@ -166,7 +146,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Religião:
+								<span style="font-weight: bold">Religião:<span style="color:red">*</span>
 								<select
 								[(ngModel)]="inscricao.religiao"
 							   	#religiao="ngModel"
@@ -204,10 +184,10 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Deficiente:&nbsp;
-									<input type="radio" [(ngModel)]="inscricao.deficiente"  name="sexo" value="true">&nbsp;Sim
+								<span style="font-weight: bold">Deficiente:<span style="color:red">*</span>&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.deficiente"  name="deficiente" value="true">&nbsp;Sim
 									&nbsp;
-        							<input type="radio" [(ngModel)]="inscricao.deficiente"  name="sexo" value="false">&nbsp;Não
+        							<input type="radio" [(ngModel)]="inscricao.deficiente"  name="deficiente" value="false">&nbsp;Não
 								</span>
 								<br>
 								<div id="deficienteDeficiencia" *ngIf="inscricao.deficiente == 'true'">
@@ -223,6 +203,52 @@
 					   			</div>
 							</div>
 
+							<div class="form-group">
+								<span style="font-weight: bold">Encaminhado por:
+								<input
+								[(ngModel)]="inscricao.encaminhado_por"
+								#encaminhado_por="ngModel"
+								name="encaminhado_por"
+								type="text"
+								id="encaminhado_por"
+							   class="form-control"
+							   placeholder="Encaminhado por..."
+							   ></span>
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Menor de 18:<span style="color:red">*</span>&nbsp;
+									<input type="radio" [(ngModel)]="inscricao.menor_18"  name="menor_18" value="true">&nbsp;Sim
+									&nbsp;
+        							<input type="radio" [(ngModel)]="inscricao.menor_18"  name="menor_18" value="false">&nbsp;Não
+								</span>
+								<br>
+								<div id="menor_18" *ngIf="inscricao.menor_18 == 'true'">
+									<div class="form-group">
+										<span style="font-weight: bold">Nome do Responsável:
+										<input
+										[(ngModel)]="inscricao.nome_responsavel"
+										#nome_responsavel="ngModel"
+										name="nome_responsavel"
+										type="text"
+										id="nome_responsavel"
+									   class="form-control"
+									   placeholder="Nome Responsável"></span>
+								   		<br>
+										<span style="font-weight: bold">RG do Responsável:
+										<input
+										[(ngModel)]="inscricao.rg_responsavel"
+										#rg_responsavel="ngModel"
+										[textMask]="{mask: rgMask}"
+										name="rg_responsavel"
+										type="text"
+										id="rg_responsavel"
+									   class="form-control"
+									   placeholder="RG Responsável"></span>
+
+									</div>
+					   			</div>
+							</div>
 
 							<br>
 							<div class="card-header card-primary card-inverse">
@@ -231,7 +257,7 @@
 							<br>
 
 							<div class="form-group">
-								<span style="font-weight: bold">RG:
+								<span style="font-weight: bold">RG:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.rg"
 								#rg="ngModel"
@@ -250,7 +276,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Orgão Emissor:
+								<span style="font-weight: bold">Orgão Emissor:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.orgao_emissor"
 								#orgao_emissor="ngModel"
@@ -259,7 +285,7 @@
 								id="orgao_emissor"
 								[textMask]="{mask: emissorMask}"
 							   class="form-control"
-							   placeholder="Orgão Emissor ex. SSP-SP"
+							   placeholder="Orgão Emissor ex. SSP-SP (Apenas Letras Maiusculas)"
 							   required></span>
 							<div id="errorMessage" *ngIf="!orgao_emissor.valid && !orgao_emissor.untouched" style="color:red">
 				   				<div *ngIf="orgao_emissor.errors && orgao_emissor.errors.required">
@@ -269,7 +295,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Data de Emissao:
+								<span style="font-weight: bold">Data de Emissao:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.rg_data"
 								#rg_data="ngModel"
@@ -302,7 +328,7 @@
 
 							<br>
 							<div class="card-header card-primary card-inverse">
-								<span class="card-title">Dados Pessoais</span>
+								<span class="card-title">Dados Para Contato</span>
 							</div>
 							<br>
 
@@ -339,11 +365,11 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Email:
+								<span style="font-weight: bold">Email:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.email"
 								#email="ngModel"
-								pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+								pattern="[A-Za-z0-9._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$"
 								name="email"
 								type="text"
 								id="email"
@@ -367,7 +393,7 @@
 							<br>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Endereço:
+								<span style="font-weight: bold">Endereço:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.rua"
 								#rua="ngModel"
@@ -385,7 +411,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Número:
+								<span style="font-weight: bold">Número:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.numero"
 								#numero="ngModel"
@@ -403,7 +429,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Bairro:
+								<span style="font-weight: bold">Bairro:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.bairro"
 								#bairro="ngModel"
@@ -421,7 +447,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">CEP:
+								<span style="font-weight: bold">CEP:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.cep"
 								#cep="ngModel"
@@ -440,7 +466,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Cidade:
+								<span style="font-weight: bold">Cidade:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.cidade"
 								#cidade="ngModel"
@@ -458,7 +484,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Estado:
+								<span style="font-weight: bold">Estado:<span style="color:red">*</span>
 								<select
 								[(ngModel)]="inscricao.estado"
 							   	#estado="ngModel"
@@ -497,10 +523,143 @@
 									<option [ngValue]="TO" value="TO">Tocantins</option>
 								</select></span>
 							</div>
-							{{inscricao | json}}
+
+							<div class="card-header card-primary card-inverse">
+								<span class="card-title">Projeto</span>
+							</div>
+
+							<br>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Escolha o projeto:<span style="color:red">*</span>
+								<select
+								[(ngModel)]="inscricao.projeto"
+							   	#projeto="ngModel"
+							   	name="projeto"
+							   	id="projeto"
+							  	class="form-control"
+							  	placeholder="projeto"
+							  	required>
+									<option [ngValue]="" selected></option>
+									<option [ngValue]="ABRE_PORTAS" value="ABRE_PORTAS">Abre Portas</option>
+									<option [ngValue]="SAUDE_BUCAL" value="SAUDE_BUCAL">Ofinicia Saúde Bucal</option>
+									<option [ngValue]="FUTSAL" value="FUTSAL">Futsal</option>
+									<option [ngValue]="CAPOEIRA" value="CAPOEIRA">Capoeira</option>
+									<option [ngValue]="DESIGN_MODA" value="DESIGN_MODA">Design de Moda</option>
+									<option [ngValue]="INGLES" value="INGLES">Inglês</option>
+									<option [ngValue]="ESPANHOL" value="ESPANHOL">Espanhol</option>
+									<option [ngValue]="INFORMATICA" value="INFORMATICA">Informática</option>
+									<option [ngValue]="LIBRAS" value="LIBRAS">Libras</option>
+									<option [ngValue]="BATERIA" value="BATERIA">Bateria</option>
+									<option [ngValue]="VIOLAO" value="VIOLAO">Violão</option>
+									<option [ngValue]="TEATRO" value="TEATRO">Teatro</option>
+								</select></span>
+							</div>
+
+							<div class="card-header card-primary card-inverse">
+								<span class="card-title">Observações</span>
+							</div>
+
+							<br>
+
+							<div class="form-group">
+								<textarea #ta
+								style="height: 150px;"
+								class="form-control"
+								value = "Observaçoes"
+								placeholder="Observações ..."
+								(blur)="inscricao.observacoes=ta.value"
+								[value]="inscricao.observacoes"></textarea>
+
+								<!-- <input
+								[(ngModel)]="inscricao.observacoes"
+								#observacoes="ngModel"
+								name="observacoes"
+								type="text"
+								id="observacoes"
+							   class="form-control"
+							   placeholder="Observações"> -->
+							</div>
+
+							<div class="form-group">
+								<span style="font-weight: bold">Atendido Por:<span style="color:red">*</span>
+								<input
+								[(ngModel)]="inscricao.atendido_por"
+								#atendido_por="ngModel"
+								name="atendido_por"
+								type="text"
+								id="atendido_por"
+							   class="form-control"
+							   placeholder="Atendido Por..."
+							   required></span>
+							<div id="errorMessage" *ngIf="!atendido_por.valid && !atendido_por.untouched" style="color:red">
+				   				<div *ngIf="atendido_por.errors && atendido_por.errors.required">
+				   					Atendido Por is required
+				   				</div>
+				   			</div>
+							</div>
+
+							<div class="card-header card-primary card-inverse">
+								<span class="card-title">Termos e Autorização</span>
+							</div>
+
+							<div class="checkbox" style="padding-left: 15px;">
+								<label>
+									<span style="font-weight: bold">
+										<input [(ngModel)]="inscricao.termo_imagem"
+									   	#termo_imagem="ngModel"
+									   	name="termo_imagem"
+									   	id="termo_imagem"
+									  	placeholder="termo_imagem"
+										type="checkbox"
+										required> Autoriza Uso de Imagem?</span><span style="color:red">*</span>
+										<div id="errorMessage" *ngIf="!termo_imagem.valid && !termo_imagem.untouched" style="color:red">
+							   				<div *ngIf="termo_imagem.errors && termo_imagem.errors.required">
+							   					Termo de Imagem Não Aceito
+							   				</div>
+							   			</div>
+								</label>
+							</div>
+							<div class="checkbox" style="padding-left: 15px;">
+								<label>
+									<span style="font-weight: bold">
+										<input type="checkbox" [(ngModel)]="inscricao.termo_responsabilidade"
+									   	#termo_responsabilidade="ngModel"
+									   	name="termo_responsabilidade"
+									   	id="termo_responsabilidade"
+									  	placeholder="termo_responsabilidade"
+										type="checkbox"
+										required> Aceita os Termos de Responsabilidade?</span><span style="color:red">*</span>
+										<div id="errorMessage" *ngIf="!termo_responsabilidade.valid && !termo_responsabilidade.untouched" style="color:red">
+							   				<div *ngIf="termo_responsabilidade.errors && termo_responsabilidade.errors.required">
+							   					Termo de Responsabilidade Não Aceito
+							   				</div>
+							   			</div>
+								</label>
+							</div>
+							<!-- {{inscricao | json}} -->
+							<br>
+							<div class="row">
+								<div id="errorMessage"  *ngIf="inscricaoError" style="color:white;background:#de6764;text-align: center;height:30px">
+									{{inscricaoErrorMsg}}
+								</div>
+								<div id="successMessage"  *ngIf="inscricaoSuccess" style="color:white;background:#5cb85c;text-align: center;height:30px">
+									Inscrição Realizada com Sucesso, Redirecionando para a Home em Instantes!
+								</div>
+							</div>
 						</div>
-						<a class="btn rounded-btn" (click)="login()"> Log in </a>
+						<br>
+						<div class="row">
+							<div style = "float: right;">
+								<div style="display: inline-block">
+									<button id="btnCancel" class="btn btn-danger"  (click)="cancel()"> Cancel </button>
+								</div>
+								<div style="display: inline-block">
+									<button id="btnSuccess" class="btn btn-success" (click)="makeInscricao()" [disabled]="!form.valid"> Salvar Inscrição</button>
+								</div>
+							</div>
 						<!-- <a type="submit" id="loginButton" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid" *ngIf="!spinner">Log in</button> -->
+						</div>
 					</form>
 
 

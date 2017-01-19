@@ -1,0 +1,14 @@
+
+<!-- Define <video> object to hold webcam image -->
+<div style = "text-align:center">
+    <div id="imgDiv" class="cssWebCam" style="display:none; align-items: center;">
+        <img id="imgInscricao" class="cssImg"  [src]="" />
+    </div>
+    <video id="video" [src]="videosrc" class="cssWebCam"></video>
+<div class="row">
+    <button id="tirarFoto" (click)="snap()" class="btn rounded-btn" >Tirar Foto</button>
+    <button  id="tirarFotoNovamente" (click)="retake()" class="btn rounded-btn" >Tirar Novamente</button>
+</div>
+
+</div>
+<br>
