@@ -22,12 +22,8 @@ export class LoginComponent {
 	loginErrorMsg: string = ""
 
 	login() {
-
-		console.log(this.username)
-		console.log(this.password)
 		this.loginService.login(this.username, this.password)
 			.then(res => {
-				console.log(res)
 				if(res.erro){
 					this.loginError = true;
 					this.loginErrorMsg = ""

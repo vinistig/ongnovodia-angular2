@@ -279,6 +279,7 @@ export class SeedConfig {
   NPM_DEPENDENCIES: InjectableDependency[] = [
     { src: 'zone.js/dist/zone.js', inject: 'libs' },
     { src: 'core-js/client/shim.min.js', inject: 'shims' },
+    // { src: 'angular2-text-mask/dist/angular2TextMask.js', inject: 'libs' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims', env: ENVIRONMENTS.DEVELOPMENT },
     { src: 'rxjs/bundles/Rx.min.js', inject: 'libs', env: ENVIRONMENTS.DEVELOPMENT }
   ];
@@ -318,6 +319,7 @@ export class SeedConfig {
     packageConfigPaths: [
       `/node_modules/*/package.json`,
       `/node_modules/**/package.json`,
+      `/node_modules/dist/package.json`,
       `/node_modules/@angular/*/package.json`
     ],
     paths: {
@@ -340,6 +342,7 @@ export class SeedConfig {
       '@angular/platform-browser-dynamic/testing':
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
+      //'angular2-text-mask': 'node_modules/angular2-text-mask/*',
 
 
       'rxjs/*': 'node_modules/rxjs/*',
@@ -414,6 +417,10 @@ export class SeedConfig {
       },
       'rxjs': {
         main: 'Rx.js',
+        defaultExtension: 'js'
+      },
+      'angular2-text-mask': {
+        main: 'dist/angular2TextMask.js',
         defaultExtension: 'js'
       }
     }

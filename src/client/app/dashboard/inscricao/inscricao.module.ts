@@ -7,7 +7,7 @@ import { InscricaoComponent } from './inscricao.component';
 import { InscricaoService } from './inscricao.service';
 
 import { TextMaskModule } from 'angular2-text-mask';
-import {WebCamComponent} from './webcam/webcam.component';
+import { WebCamComponent } from './webcam/webcam.component';
 
 @NgModule({
     imports: [CommonModule,

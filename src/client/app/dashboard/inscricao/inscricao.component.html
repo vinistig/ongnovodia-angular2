@@ -30,7 +30,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!nome.valid && !nome.untouched" style="color:red">
 				   				<div *ngIf="nome.errors && nome.errors.required">
-				   					Nome is required
+				   					Nome é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -58,7 +58,7 @@
 							  placeholder="Nome do Pai"
 							  ></span>
 							<div id="errorMessage" *ngIf="((!nome_pai.untouched) && (!nome_mae.untouched)) && ((!nome_mae.value)&&(!nome_pai.value))" style="color:red">
-  								  Nome da Mae ou do Pai is required
+  								  Nome da Mae ou do Pai é necessário
   							</div>
 							</div>
 
@@ -102,7 +102,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!datanasc.valid && !datanasc.untouched" style="color:red">
 				   				<div *ngIf="datanasc.errors && datanasc.errors.required">
-				   					Data de Nascimento is required
+				   					Data de Nascimento é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -120,7 +120,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!naturalidade.valid && !naturalidade.untouched" style="color:red">
 				   				<div *ngIf="naturalidade.errors && naturalidade.errors.required">
-				   					Naturalidade is Required
+				   					Naturalidade é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -270,7 +270,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!rg.valid && !rg.untouched" style="color:red">
 				   				<div *ngIf="rg.errors && rg.errors.required">
-				   					RG is required
+				   					RG é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -289,7 +289,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!orgao_emissor.valid && !orgao_emissor.untouched" style="color:red">
 				   				<div *ngIf="orgao_emissor.errors && orgao_emissor.errors.required">
-				   					Orgão Emissor is required
+				   					Orgão Emissor é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -307,7 +307,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!rg_data.valid && !rg_data.untouched" style="color:red">
 				   				<div *ngIf="rg_data.errors && rg_data.errors.required">
-				   					Data de Emissão is required
+				   					Data de Emissão é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -360,7 +360,7 @@
 							  ></span>
 
 							  <div id="errorMessage" *ngIf="((!telefone.untouched) && (!celular.untouched)) && ((!celular.value)&&(!telefone.value))" style="color:red">
-  				   					Telefone Fixo ou Celular is required
+  				   					Telefone Fixo ou Celular é necessário
   				   			  </div>
 							</div>
 
@@ -381,7 +381,7 @@
 				   					Email invalid
 				   				</div>
 				   				<div *ngIf="email.errors && email.errors.required">
-				   					Email is required
+				   					Email é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -405,7 +405,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!rua.valid && !rua.untouched" style="color:red">
 				   				<div *ngIf="rua.errors && rua.errors.required">
-				   					Endereço is required
+				   					Endereço é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -423,7 +423,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!numero.valid && !numero.untouched" style="color:red">
 				   				<div *ngIf="numero.errors && numero.errors.required">
-				   					Numero is required
+				   					Numero é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -441,7 +441,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!bairro.valid && !bairro.untouched" style="color:red">
 				   				<div *ngIf="bairro.errors && bairro.errors.required">
-				   					Bairro is required
+				   					Bairro é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -460,7 +460,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!cep.valid && !cep.untouched" style="color:red">
 				   				<div *ngIf="cep.errors && cep.errors.required">
-				   					CEP is required
+				   					CEP é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -478,7 +478,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!cidade.valid && !cidade.untouched" style="color:red">
 				   				<div *ngIf="cidade.errors && cidade.errors.required">
-				   					Cidade is required
+				   					Cidade é necessário
 				   				</div>
 				   			</div>
 							</div>
@@ -525,14 +525,36 @@
 							</div>
 
 							<div class="card-header card-primary card-inverse">
-								<span class="card-title">Projeto</span>
+								<span class="card-title">Projeto(s)</span>
 							</div>
 
 							<br>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Escolha o projeto:<span style="color:red">*</span>
-								<select
+								<span style="font-weight: bold">Escolha o(s) projeto(s): <span style="color:red">* obs. Para selecionar mais de um projetos mantenha a tecla control pressionada</span>
+								<select multiple [(ngModel)]="inscricao.projetos"
+								#projetos="ngModel"
+								name="projetos"
+								id="projetos" placeholder="projeto"
+								class="form-control multiple-select"
+								(change)="srcValueChange($event)"
+								style="height: 255px;"
+								required>
+									<option [ngValue]="ABRE_PORTAS" value="ABRE_PORTAS">Abre Portas</option>
+									<option [ngValue]="SAUDE_BUCAL" value="SAUDE_BUCAL">Ofinicia Saúde Bucal</option>
+									<option [ngValue]="FUTSAL" value="FUTSAL">Futsal</option>
+									<option [ngValue]="CAPOEIRA" value="CAPOEIRA">Capoeira</option>
+									<option [ngValue]="DESIGN_MODA" value="DESIGN_MODA">Design de Moda</option>
+									<option [ngValue]="INGLES" value="INGLES">Inglês</option>
+									<option [ngValue]="ESPANHOL" value="ESPANHOL">Espanhol</option>
+									<option [ngValue]="INFORMATICA" value="INFORMATICA">Informática</option>
+									<option [ngValue]="LIBRAS" value="LIBRAS">Libras</option>
+									<option [ngValue]="BATERIA" value="BATERIA">Bateria</option>
+									<option [ngValue]="VIOLAO" value="VIOLAO">Violão</option>
+									<option [ngValue]="TEATRO" value="TEATRO">Teatro</option>
+								</select>
+
+								<!-- <select
 								[(ngModel)]="inscricao.projeto"
 							   	#projeto="ngModel"
 							   	name="projeto"
@@ -553,8 +575,11 @@
 									<option [ngValue]="BATERIA" value="BATERIA">Bateria</option>
 									<option [ngValue]="VIOLAO" value="VIOLAO">Violão</option>
 									<option [ngValue]="TEATRO" value="TEATRO">Teatro</option>
-								</select></span>
+								</select> -->
+								</span>
 							</div>
+
+
 
 							<div class="card-header card-primary card-inverse">
 								<span class="card-title">Observações</span>
@@ -594,7 +619,7 @@
 							   required></span>
 							<div id="errorMessage" *ngIf="!atendido_por.valid && !atendido_por.untouched" style="color:red">
 				   				<div *ngIf="atendido_por.errors && atendido_por.errors.required">
-				   					Atendido Por is required
+				   					Atendido Por é necessário
 				   				</div>
 				   			</div>
 							</div>

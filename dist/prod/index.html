@@ -8,8 +8,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/css/main.css?1484715450007">
+    <link rel="stylesheet" href="/css/main.css?1485051859195">
     <!-- endinject -->
+    <!-- <script src="app/shared/webcam.js"></script> -->
 </head>
 <body>
 
@@ -20,6 +21,7 @@
             <div class="bounce3"></div>
         </div>
     </sd-app>
+
 
     <script>
     // Fixes undefined module function in SystemJS bundle
@@ -35,11 +37,28 @@
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="/js/shims.js?1484715450000"></script>
-    <script src="/js/app.js?1484715450001"></script>
+    <script src="/js/shims.js?1485051859178"></script>
+    <script src="/js/app.js?1485051859179"></script>
     <!-- endinject -->
 
     
 
+    <!-- <div id="my_camera" style="width:320px; height:240px;" ></div> -->
+
+    <!-- <script>
+    	window.onload = function (){
+            //alert('page is loaded');
+            setTimeout(function () {
+                // alert('page is loaded and 1 minute has passed');
+                Webcam.attach('my_camera');
+            }, 1000);
+    }
+    	function take_snapshot() {
+    		Webcam.snap( function(data_uri) {
+    			// document.getElementById('my_camera').innerHTML = '<img src="'+data_uri+'"/>';
+    			document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+    		} );
+    	}
+    </script> -->
 </body>
 </html>

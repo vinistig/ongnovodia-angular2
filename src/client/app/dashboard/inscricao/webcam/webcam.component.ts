@@ -22,12 +22,13 @@ export class WebCamComponent implements OnInit {
     }
 
     snap () {
+
         console.log("snap")
-        var video = document.getElementById('video');
-        var canvas = document.createElement('canvas');
-        var img = document.getElementById('imgInscricao');
-        var imgDiv = document.getElementById('imgDiv');
-        var btnTirarFoto = document.getElementById('tirarFoto');
+        var video = <HTMLVideoElement>document.getElementById('video');
+        var canvas = <HTMLCanvasElement>document.createElement('canvas');
+        var img = <HTMLImageElement>document.getElementById('imgInscricao');
+        var imgDiv = <HTMLDivElement>document.getElementById('imgDiv');
+        var btnTirarFoto = <HTMLButtonElement>document.getElementById('tirarFoto');
 
 
         canvas.width  = 200;
@@ -43,10 +44,10 @@ export class WebCamComponent implements OnInit {
     }
 
     retake () {
-        var video = document.getElementById('video');
-        var img = document.getElementById('imgInscricao');
-        var imgDiv = document.getElementById('imgDiv');
-        var btnTirarFoto = document.getElementById('tirarFoto');
+        var video = <HTMLVideoElement>document.getElementById('video');
+        var img = <HTMLImageElement>document.getElementById('imgInscricao');
+        var imgDiv = <HTMLDivElement>document.getElementById('imgDiv');
+        var btnTirarFoto = <HTMLButtonElement>document.getElementById('tirarFoto');
         btnTirarFoto.disabled = false;
         img.src = ""
         video.style.display = "inline-flex";
@@ -68,7 +69,7 @@ export class WebCamComponent implements OnInit {
         // 4. Get stream from webcam
         nav.getUserMedia(
             {video: true},
-            (stream) => {
+            (stream: any) => {
                 let webcamUrl = URL.createObjectURL(stream);
 
                 // 4a. Tell Angular the stream comes from a trusted source
@@ -77,20 +78,20 @@ export class WebCamComponent implements OnInit {
                 // 4b. Start video element to stream automatically from webcam.
                 this.element.nativeElement.querySelector('video').autoplay = true;
             },
-            (err) => console.log(err));
+            (err: any) => console.log(err));
 
 
 
         var promise = new Promise<string>((resolve, reject) => {
-            nav.getUserMedia({video: true}, (stream) => {
+            nav.getUserMedia({video: true}, (stream: any) => {
                 resolve(stream);
-            }, (err) => reject(err));
-        }).then((stream) => {
+            }, (err: any) => reject(err));
+        }).then((stream: any) => {
             let webcamUrl = URL.createObjectURL(stream);
             this.videosrc = this.sanitizer.bypassSecurityTrustResourceUrl(webcamUrl);
             // for example: type logic here to send stream to your  server and (re)distribute to
             // other connected clients.
-        }).catch((error) => {
+        }).catch((error: any) => {
             console.log(error);
         });
     }
