@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { InscricaoService } from './inscricao.service'
 
@@ -23,8 +24,11 @@ export class InscricaoComponent {
 	public cepMask = [/\d/,/\d/,'.',/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/]
 	public telefoneMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
 	public celularMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
+	public dataMask = [/\d/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/]
+	
 
 	makeInscricao() {
+
 		this.inscricao.rg = this.inscricao.rg.replace(/\D+/g, '');
 		this.inscricao.cpf = this.inscricao.cpf.replace(/\D+/g, '');
 		this.inscricao.cep = this.inscricao.cep.replace(/\D+/g, '');

@@ -11,7 +11,7 @@
 
 				<div class="card-block">
 
-					<form #form="ngForm">
+					<form #form="ngForm" (keydown.enter)="$event.preventDefault()">
 						<div class="form-content">
 							<div class="card-header card-primary card-inverse">
 								<span class="card-title">Dados Pessoais</span>
@@ -36,7 +36,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Nome da Mãe:
+								<span style="font-weight: bold">Nome completo da mãe:
 								<input
 								[(ngModel)]="inscricao.nome_mae"
 								#nome_mae="ngModel"
@@ -44,10 +44,10 @@
 								type="text"
 								id="nomemae"
 							   class="form-control"
-							   placeholder="Nome da Mãe"
+							   placeholder="Nome completo da mãe"
 							   ></span>
 							   <br>
-							   <span style="font-weight: bold">Nome do Pai:
+							   <span style="font-weight: bold">Nome completo do pai:
 							   <input
 							   [(ngModel)]="inscricao.nome_pai"
 							   #nome_pai="ngModel"
@@ -55,7 +55,7 @@
 							   type="text"
 							   id="nomepai"
 							  class="form-control"
-							  placeholder="Nome do Pai"
+							  placeholder="Nome completo do pai"
 							  ></span>
 							<div id="errorMessage" *ngIf="((!nome_pai.untouched) && (!nome_mae.untouched)) && ((!nome_mae.value)&&(!nome_pai.value))" style="color:red">
   								  Nome da Mae ou do Pai é necessário
@@ -77,15 +77,15 @@
 							<div class="form-group">
 								<span style="font-weight: bold">Estado Civil:<span style="color:red">*</span>
 									&nbsp;
-									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="SOLTEIRO">&nbsp;Solteiro
+									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="SOLTEIRO">&nbsp;Solteiro(a)
 									&nbsp;
-        							<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="CASADO">&nbsp;Casado
+        							<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="CASADO">&nbsp;Casado(a)
 									&nbsp;
-									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="VIUVO">&nbsp;Víuvo
+									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="VIUVO">&nbsp;Viúvo(a)
 									&nbsp;
-									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="DIVORCIADO">&nbsp;Divorciado
+									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="DIVORCIADO">&nbsp;Divorciado(a)
 									&nbsp;
-									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="SEPARADO">&nbsp;Separado
+									<input type="radio" [(ngModel)]="inscricao.estado_civil"  name="estado_civil" value="SEPARADO">&nbsp;Separado(a)
 								</span>
 							</div>
 
@@ -97,6 +97,7 @@
 								name="datanasc"
 								type="date"
 								id="datanasc"
+								[textMask]="{mask: dataMask}"
 							   class="form-control"
 							   placeholder="Data de Nascimento"
 							   required></span>
@@ -217,7 +218,7 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Menor de 18:<span style="color:red">*</span>&nbsp;
+								<span style="font-weight: bold">Menor de 18 anos:<span style="color:red">*</span>&nbsp;
 									<input type="radio" [(ngModel)]="inscricao.menor_18"  name="menor_18" value="true">&nbsp;Sim
 									&nbsp;
         							<input type="radio" [(ngModel)]="inscricao.menor_18"  name="menor_18" value="false">&nbsp;Não
@@ -233,7 +234,7 @@
 										type="text"
 										id="nome_responsavel"
 									   class="form-control"
-									   placeholder="Nome Responsável"></span>
+									   placeholder="Nome do Responsável"></span>
 								   		<br>
 										<span style="font-weight: bold">RG do Responsável:
 										<input
@@ -244,7 +245,7 @@
 										type="text"
 										id="rg_responsavel"
 									   class="form-control"
-									   placeholder="RG Responsável"></span>
+									   placeholder="RG Do Responsável"></span>
 
 									</div>
 					   			</div>
@@ -285,7 +286,7 @@
 								id="orgao_emissor"
 								[textMask]="{mask: emissorMask}"
 							   class="form-control"
-							   placeholder="Orgão Emissor ex. SSP-SP (Apenas Letras Maiusculas)"
+							   placeholder="Orgão Emissor (Apenas Letras MAIÚSCULAS - exemplo: SSP-SP)"
 							   required></span>
 							<div id="errorMessage" *ngIf="!orgao_emissor.valid && !orgao_emissor.untouched" style="color:red">
 				   				<div *ngIf="orgao_emissor.errors && orgao_emissor.errors.required">
@@ -295,11 +296,12 @@
 							</div>
 
 							<div class="form-group">
-								<span style="font-weight: bold">Data de Emissao:<span style="color:red">*</span>
+								<span style="font-weight: bold">Data de Emissão:<span style="color:red">*</span>
 								<input
 								[(ngModel)]="inscricao.rg_data"
 								#rg_data="ngModel"
 								name="rg_data"
+								[textMask]="{mask: dataMask}"
 								type="date"
 								id="rg_data"
 							   class="form-control"
@@ -525,7 +527,7 @@
 							</div>
 
 							<div class="card-header card-primary card-inverse">
-								<span class="card-title">Projeto(s)</span>
+								<span class="card-title">Projetos</span>
 							</div>
 
 							<br>
@@ -662,7 +664,7 @@
 							   			</div>
 								</label>
 							</div>
-							<!-- {{inscricao | json}} -->
+							{{inscricao | json}}
 							<br>
 							<div class="row">
 								<div id="errorMessage"  *ngIf="inscricaoError" style="color:white;background:#de6764;text-align: center;height:30px">
@@ -680,7 +682,7 @@
 									<button id="btnCancel" class="btn btn-danger"  (click)="cancel()"> Cancel </button>
 								</div>
 								<div style="display: inline-block">
-									<button id="btnSuccess" class="btn btn-success" (click)="makeInscricao()" [disabled]="!form.valid"> Salvar Inscrição</button>
+									<button id="btnSuccess" class="btn btn-success" (click)="makeInscricao()" [disabled]="(!form.valid) || (!inscricao.termo_imagem) || (!inscricao.termo_responsabilidade) "> Salvar Inscrição</button>
 								</div>
 							</div>
 						<!-- <a type="submit" id="loginButton" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid" *ngIf="!spinner">Log in</button> -->

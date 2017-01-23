@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
         	<img src="assets/images/flat-avatar.png" class="user-avatar" />
-			<h1>ONG Novo Dia</h1>
+			<!-- <h1>ONG Novo Dia</h1> -->
 			<form #form="ngForm">
 				<div class="form-content">
 					<div class="form-group">
@@ -13,11 +13,11 @@
 						type="text"
 						id="username"
 					   class="form-control input-underline input-lg"
-					   placeholder="Username"
+					   placeholder="Usuário"
 					   required>
 					   <div id="errorMessage" *ngIf="!user.valid && !user.untouched">
 		   				<div *ngIf="user.errors && user.errors.required">
-		   					Username é necessário
+		   					Usuário é necessário
 		   				</div>
 		   			</div>
 					</div>
@@ -30,11 +30,11 @@
 						class="form-control input-underline input-lg"
 						id="password"
  					   class="form-control input-underline input-lg"
-					   placeholder="Password"
+					   placeholder="Senha"
 					   required>
 
 					 <div id="errorMessage" *ngIf="!pass.valid && !pass.untouched">
-		   				Password é necessário
+		   				Senha é necessário
 		   			</div>
 					<br>
 					<div id="errorMessage" *ngIf="loginError" style="color:red">
@@ -43,7 +43,7 @@
 
 					</div>
 				</div>
-				<button type="submit" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid"> Log in </button>
+				<button type="submit" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid"> Entrar </button>
 				<!-- <a type="submit" id="loginButton" class="btn rounded-btn" (click)="login()" [disabled]="!form.valid" *ngIf="!spinner">Log in</button> -->
 			</form>
 		</div>
