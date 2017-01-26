@@ -31,13 +31,14 @@ export class LoginComponent {
 				} else{
 					this.loginError = false;
 					sessionStorage.clear();
-					sessionStorage.setItem('user', JSON.stringify({"nome": res.name, "username": res.username}));
+					sessionStorage.setItem('user', JSON.stringify(res));
+					//this.router.navigate(['dashboard', 'blankpage']);
 					this.router.navigate(['dashboard', 'home']);
 				}
 			}).catch(error => {
 				console.log("error")
 				this.loginError = true;
-				this.loginErrorMsg = "SERVER ERROR, PLEASE TRY AGAIN"
+				this.loginErrorMsg = "SERVER ERROR, TENTE NOVAMENTE"
 			});
 	}
 }

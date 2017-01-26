@@ -10,7 +10,7 @@
 				<webcam-component></webcam-component>
 
 				<div class="card-block">
-
+					<!-- {{inscricao | json}} -->
 					<form #form="ngForm" (keydown.enter)="$event.preventDefault()">
 						<div class="form-content">
 							<div class="card-header card-primary card-inverse">
@@ -238,9 +238,9 @@
 								   		<br>
 										<span style="font-weight: bold">RG do Responsável:
 										<input
+										(keypress)="_keyPress($event)"
 										[(ngModel)]="inscricao.rg_responsavel"
 										#rg_responsavel="ngModel"
-										[textMask]="{mask: rgMask}"
 										name="rg_responsavel"
 										type="text"
 										id="rg_responsavel"
@@ -260,12 +260,12 @@
 							<div class="form-group">
 								<span style="font-weight: bold">RG:<span style="color:red">*</span>
 								<input
+								(keypress)="_keyPress($event)"
 								[(ngModel)]="inscricao.rg"
 								#rg="ngModel"
 								name="rg"
 								type="text"
 								id="rg"
-							   [textMask]="{mask: rgMask}"
 							   class="form-control"
 							   placeholder="RG (Somente Números e Letras Maiusculas)"
 							   required></span>

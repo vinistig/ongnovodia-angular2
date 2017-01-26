@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 
 export class SidebarComponent {
 	showMenu: string = '';
+	currentUser = JSON.parse(sessionStorage.getItem('user'));
 	addExpandClass(element: any) {
 		if (element === this.showMenu) {
 			this.showMenu = '0';

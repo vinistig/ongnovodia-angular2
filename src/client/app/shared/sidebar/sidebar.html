@@ -10,11 +10,11 @@
                 <li>
                     <a [routerLink]="['home']" class="logo">
                         <img src="assets/images/flat-avatar.png" class="user-avatar" />
-                        <p class="text-xs-center">{{username}}</p>
+                        <p class="text-xs-center">Logado como: {{currentUser.name}}</p>
                     </a>
                 </li>
                 <li>
-                    <a [routerLink]="['home']">
+                    <a [routerLink]="['blankpage']">
                         <i class="fa fa-home"></i>
                         <span>&nbsp; Página Inicial</span>
                     </a>
@@ -25,18 +25,18 @@
                         <span>&nbsp; Inscrição</span>
                     </a>
                 </li>
-                <!-- <li class="nested" [ngClass]="{'expand' : showMenu === 'pages' }">
-                    <a (click)="addExpandClass('pages')"><i class="fa fa-chevron-circle-down"></i><span>&nbsp;&nbsp; Pages</span></a>
+                <li class="nested" [ngClass]="{'expand' : showMenu === 'pages' }" *ngIf="currentUser.isAdmin">
+                    <a (click)="addExpandClass('pages')"><i class="fa fa-chevron-circle-down"></i><span>&nbsp;&nbsp; Administrar</span></a>
                     <ul class="submenu">
                         <li>
-                            <a [routerLink]="['components']"><span>Components</span></a>
+                            <a [routerLink]="['blankpage']"><span>Campos Formulário de Incrição</span></a>
                         </li>
                         <li>
-                            <a [routerLink]="['blankpage']"><span>Blank Page</span></a>
+                            <a [routerLink]="['blankpage']"><span>Usuários</span></a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <!-- <li>
                     <a href='http://www.strapui.com/themes/ani-angular-2-bootstrap-4-theme/'>
                         <i class="fa fa-shopping-cart"></i>
                         <span>&nbsp; Ani Premium Theme</span>

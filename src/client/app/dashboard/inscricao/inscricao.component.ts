@@ -1,7 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Directive } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { InscricaoService } from './inscricao.service'
+
+@Directive({
+    selector: 'input[type=text]',
+    host: {
+        '(input)': 'ref.nativeElement.value=$event.target.value.toUpperCase()',
+    }
+
+})
+
 
 @Component({
 	moduleId: module.id,
@@ -19,13 +28,12 @@ export class InscricaoComponent {
 	inscricao = {projetos:[""],rg:"",cep:"",deficiencia:"", observacoes:"", rg_responsavel:"", nome_pai:"", nome_mae:"", encaminhado_por:"", nome_responsavel:"", cpf:"", telefone:"", celular:"", image:""};
 
 	public cpfMask = [/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
-	public rgMask = [/\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /[0-9-X]/]
+	public rgMask = [/\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /[0-9-X]/,/[0-9-X]/]
 	public emissorMask = [/[A-Z]/, /[A-Z]/, /[A-Z]/,'-', /[A-Z]/, /[A-Z]/]
 	public cepMask = [/\d/,/\d/,'.',/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/]
 	public telefoneMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
 	public celularMask = ['(',/\d/,/\d/,')',/\d/,/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/,/\d/,/\d/]
 	public dataMask = [/\d/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/]
-	
 
 	makeInscricao() {
 
@@ -75,4 +83,14 @@ export class InscricaoComponent {
             }
         }
     }
+
+	_keyPress(event: any) {
+    const pattern = /[0-9\X]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    // console.log(inputChar, e.charCode);
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+    }
+	}
 }
