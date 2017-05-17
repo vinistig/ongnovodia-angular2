@@ -1,27 +1,8 @@
-# Ani Theme rewritten in Angular2 and Bootstrap 4
-
-This project is a part of the famous ANI Theme [Ani Theme v2.0](http://www.strapui.com/themes/ani-angular-2-bootstrap-4-theme/) to Angular2 Theme.
-
-Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
-
-##[Demo](http://rawgit.com/start-angular/ani-angular-2/master/dist/prod/)
-
-`Ani Angular2` provides the following features:
-
-- Allows you to painlessly update the seed tasks of your already existing project.
-- Ready to go, statically typed build system using gulp for working with TypeScript.
-- Production and development builds.
-- Ahead-of-Time compilation support.
-- Sample unit tests with Jasmine and Karma including code coverage via istanbul.
-- End-to-end tests with Protractor.
-- Development server with Livereload.
-- Following the best practices for your application’s structure.
-- Manager of your type definitions using @types.
-- Has autoprefixer and css-lint support.
+# Ong Novo Dia - Angular 2 with Gulp Build
 
 ## How to start
 
-**Note** that this seed project requires node v4.x.x or higher and npm 2.14.7.
+**Note** that this seed project requires node v4.7.0 and npm 2.14.7.
 
 
 In order to start the seed use:
@@ -29,7 +10,7 @@ In order to start the seed use:
 ####1. Clone this project or Download that ZIP file
 
 ```sh
-$ git clone git@github.com:start-angular/ani-angular-2.git
+$ git clone git@github.com:vinistig/ongnovodia-angular2
 ```
 
 ####2.  Make sure you have [npm](https://www.npmjs.org/) installed globally
@@ -37,7 +18,7 @@ $ git clone git@github.com:start-angular/ani-angular-2.git
 You must have `ts-node` installed as global. If you don't, use:
 
 ```bash
-npm install -g ts-node
+$ npm install -g ts-node
 ```
 
 ####3. On the command prompt run the following commands
@@ -47,13 +28,22 @@ $ cd `project-directory`
 ```
 
 ```sh
-$ npm install 
+$ npm install
 ```
+
+To build your project local just run:
 
 ```sh
 $ npm start
 ```
 
+For more build options see package.json script section.
+
+For example to build the prod dist just run:
+
+```sh
+npm build.prod
+```
 ### Configuration
 
 Default application server configuration
