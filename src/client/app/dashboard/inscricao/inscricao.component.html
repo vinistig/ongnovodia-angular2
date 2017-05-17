@@ -260,7 +260,6 @@
 							<div class="form-group">
 								<span style="font-weight: bold">RG:<span style="color:red">*</span>
 								<input
-								(keypress)="_keyPress($event)"
 								[(ngModel)]="inscricao.rg"
 								#rg="ngModel"
 								name="rg"
@@ -268,6 +267,7 @@
 								id="rg"
 							   class="form-control"
 							   placeholder="RG (Somente Números e Letras Maiusculas)"
+							   (keypress)="_keyPress($event)"
 							   required></span>
 							<div id="errorMessage" *ngIf="!rg.valid && !rg.untouched" style="color:red">
 				   				<div *ngIf="rg.errors && rg.errors.required">

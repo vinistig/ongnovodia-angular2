@@ -88,7 +88,9 @@ export class InscricaoComponent {
     const pattern = /[0-9\X]/;
     let inputChar = String.fromCharCode(event.charCode);
     // console.log(inputChar, e.charCode);
-    if (!pattern.test(inputChar)) {
+    if(event.charCode == 0){
+
+	} else if (!pattern.test(inputChar)) {
       // invalid character, prevent input
       event.preventDefault();
     }
