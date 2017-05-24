@@ -200,3 +200,9 @@ var APP_BASE         = '/';
 ├── typings.json
 └── appveyor.yml
 ```
+
+## Back end project:
+
+To integrate this front end to run in a single project see this repo > [Ong Novo Dia Backend](https://github.com/vinistig/ongnovodia)
+
+
